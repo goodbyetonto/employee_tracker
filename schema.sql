@@ -35,6 +35,8 @@ SELECT * FROM department;
 SELECT * FROM role_info; 
 SELECT * FROM employee; 
 
+SELECT department.department_name FROM department INNER JOIN role_info ON (department.id = role_info.department_id); 
+
 
 
 
