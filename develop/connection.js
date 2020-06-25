@@ -1,6 +1,7 @@
 // DEPENDENCIES 
 const util = require("util"); 
 const mysql = require("mysql"); 
+const DB = require("./lib/db"); 
 
 const connection = mysql.createConnection({
     host: "localhost",

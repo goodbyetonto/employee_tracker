@@ -66,7 +66,7 @@ function runSearch() {
 
 async function allEmployee() {
     console.log("Viewing all employees...\n");
-    console.table(new DB(findAllEmployee(connection))); 
+    console.table(new DB(findAllEmployee())); 
 
     // ASK INITIAL INQUIRE PROMPTS
     await runSearch();
