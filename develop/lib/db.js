@@ -2,7 +2,7 @@ const connection = require("../connection");
 
 class DB {
     constructor(connection) {
-        this.connection = connection
+        this.connection = connection;
     }
 
     findAllEmployee() {
@@ -17,7 +17,7 @@ class DB {
                 if (err) throw err; 
             }
         );
-    }
+    };
 
     findAllRoles() {
         return this.connection.query(

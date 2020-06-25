@@ -64,16 +64,12 @@ function runSearch() {
         });
 }
 
-function allEmployee() {
+async function allEmployee() {
     console.log("Viewing all employees...\n");
-    DB.findAllEmployee().then(
-        (employees) => {
-            console.table(employees);
-        }
-    ); 
+    console.table(new DB(findAllEmployee(connection))); 
 
     // ASK INITIAL INQUIRE PROMPTS
-    runSearch();
+    await runSearch();
 }
 
 // function empDepartment() {
@@ -123,5 +119,6 @@ function empAdd() {
     // logs the actual query being run
     console.log(query.sql);
 }
+
 
 

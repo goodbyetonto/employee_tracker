@@ -16,10 +16,6 @@ const connection = mysql.createConnection({
     database: "employee_tracker"
 });
 
-connection.connect( (err) => {
-    if (err) throw err; 
-});
-
 //allows for promises connection queries
 connection.query = util.promisify(connection.query);
 
