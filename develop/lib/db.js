@@ -13,9 +13,7 @@ class DB {
             LEFT JOIN role_info on employee.role_id = role_info.id 
             LEFT JOIN department on role_info.department_id = department.id 
             LEFT JOIN employee manager on manager.id = employee.manager_id
-            `, (err) => {
-                if (err) throw err; 
-            }
+            `
         );
     };
 
@@ -30,4 +28,4 @@ class DB {
 
 }
 
-module.exports = DB;
+module.exports = new DB(connection);
