@@ -1,14 +1,16 @@
 // DEPENDENCIES
 
 const inquirer = require("inquirer");
-const connection = require("./connection"); 
+//const connection = require("./connection"); 
 const DB = require("./lib/db");
 
 
-connection.connect(function (err) {
-    if (err) throw err;
-    runSearch();
-});
+// connection.connect(function (err) {
+//     if (err) throw err;
+//     runSearch();
+// });
+
+runSearch();
 
 function runSearch() {
     inquirer
@@ -28,8 +30,10 @@ function runSearch() {
             ]
         })
         .then(function (answer) {
+            console.log(answer);
             switch (answer.action) {
                 case "VIEW ALL EMPLOYEES":
+                    console.log(answer.action);
                     allEmployee();
                     break;
 
@@ -65,11 +69,13 @@ function runSearch() {
 }
 
 async function allEmployee() {
+    console.log("function running");
+    const employees = await DB.findAllEmployee();
     console.log("Viewing all employees...\n");
-    console.table(new DB(findAllEmployee())); 
+    console.table(employees); 
 
     // ASK INITIAL INQUIRE PROMPTS
-    await runSearch();
+    runSearch();
 }
 
 // function empDepartment() {
