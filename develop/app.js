@@ -4,11 +4,7 @@ const inquirer = require("inquirer");
 const connection = require("./connection"); 
 const DB = require("./lib/db");
 
-
-connection.connect(function (err) {
-    if (err) throw err;
-    runSearch();
-});
+runSearch();
 
 function runSearch() {
     inquirer
@@ -65,31 +61,48 @@ function runSearch() {
 }
 
 async function allEmployee() {
+    const employees = await DB.findAllEmployee();
     console.log("Viewing all employees...\n");
-    console.table(new DB(findAllEmployee())); 
-
+    console.table(employees);
     // ASK INITIAL INQUIRE PROMPTS
-    await runSearch();
+    runSearch();
 }
 
-// function empDepartment() {
+async function empDepartment() {
+    const deptArray = await connection.query("SELECT department_name FROM department"); 
+    console.log(JSON.parse(deptArray)); 
+
 //     inquirer
-//         .prompt ({
-//             name: "empDept", 
-//             type: "list", 
-//             message: "What department would you like to filter by? ", 
-//             choices: 
+//         .prompt({
+//             name: "empDept",
+//             type: "input",
+//             message: "What department would you like to filter by? ",
+//             choices:
 //                 [
 //                     "Management",
-//                     "Engineering", 
-//                     "Technical Support", 
-//                     "Customer Support"
+//                     "Engineering",
+//                     "Technical Support",
+//                     "Customer Support",
 //                 ]
+
+//             // Check to make sure user entered a numeric answer, not including alpha characters
+//             validate: answer => {
+//                 const pass = answer.match(
+//                     /^[1-9]\d*$/
+//                 );
+//                 if (pass) {
+//                     return true;
+//                 }
+//                 return "You entered alpha characters. Please enter an ID#, containing only numeric characters";
+//             }
 //         })
 //         .then(function (answer) {
-            
+//             const employees = await DB.findAllDept();
+
+
+
 //         }
-//     const sqlQuery = "SELECT employee.first_name, employee.last_name, department.department_name, role_info.title, role_info.salary, employee.manager_id FROM employee RIGHT JOIN (role_info RIGHT JOIN department ON department.id = role_info.department_id) ON employee.role_id = role_info.department_id WHERE department.id = 1"; 
+//     const sqlQuery = "SELECT employee.first_name, employee.last_name, department.department_name, role_info.title, role_info.salary, employee.manager_id FROM employee RIGHT JOIN (role_info RIGHT JOIN department ON department.id = role_info.department_id) ON employee.role_id = role_info.department_id WHERE department.id = 1";
 // }
 
 
@@ -121,4 +134,4 @@ function empAdd() {
 }
 
 
-
+}
