@@ -48,4 +48,8 @@ class DB {
 
 }
 
+<<<<<<< HEAD
 module.exports = new DB(connection);
+=======
+module.exports = new DB(connection);
+>>>>>>> bfea559b86620f0794a6895e48839fcd98936cb0
